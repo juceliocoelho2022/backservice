@@ -16,6 +16,7 @@ public class ServicoController {
     @Autowired
     private ServicoService servicoService;
 
+    @GetMapping("/")
     public List<Servico> buscatTodos() {
         return servicoService.buscarTodos();
     }
@@ -38,8 +39,9 @@ public class ServicoController {
     public Servico alterar(@RequestBody  Servico servico) {
         return servicoService.alterar(servico);
     }
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir(@PathParam("id") Long id){
-        ServicoService.excluir(id);
+        servicoService.excluir(id);
         return ResponseEntity.ok().build();
     }
 

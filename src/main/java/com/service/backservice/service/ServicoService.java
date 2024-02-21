@@ -38,7 +38,7 @@ public class ServicoService {
         }
             return  servicoRepository.saveAndFlush(servico);
     }
-   public static void excluir(Long id){
+   public void excluir(Long id){
         Servico servico = servicoRepository.findById(id).get();
         servicoRepository.delete(servico);
    }
