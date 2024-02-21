@@ -2,10 +2,10 @@ package com.service.backservice.controller;
 
 import com.service.backservice.entity.Servico;
 import com.service.backservice.service.ServicoService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,7 +30,17 @@ public class ServicoController {
         return servicoService.buscarServicvoCancelados();
     }
 
-    public Servico inserir(Servico servico) {
+    @PostMapping("/")
+    public Servico inserir(@RequestBody  Servico servico) {
         return servicoService.inserir(servico);
     }
+    @PutMapping("/")
+    public Servico alterar(@RequestBody  Servico servico) {
+        return servicoService.alterar(servico);
+    }
+    public ResponseEntity<Void> excluir(@PathParam("id") Long id){
+        ServicoService.excluir(id);
+        return ResponseEntity.ok().build();
+    }
+
 }
